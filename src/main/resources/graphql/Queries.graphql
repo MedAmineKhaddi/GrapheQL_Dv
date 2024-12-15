@@ -1,0 +1,5 @@
+type Query {
+    listeAvion:[Avion],
+    getAvionByModel(model: String) : [Avion] ,
+    getAvionByModelAndPrice(model :String, price:Float): [Avion]
+}

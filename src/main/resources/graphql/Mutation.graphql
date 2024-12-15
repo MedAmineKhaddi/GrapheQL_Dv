@@ -1,0 +1,11 @@
+type Mutation{
+    saveAvion(Avion : AvionDetails) :Avion,
+    deleteAvion(matricule : String) : [Avion]
+}
+
+input AvionDetails{
+    price : Float,
+    model : String,
+    matricule : String,
+    color : String,
+}
