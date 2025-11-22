@@ -5,16 +5,13 @@ import ma.atelier.graphql_tp_devoir.dao.entities.Avion;
 import ma.atelier.graphql_tp_devoir.dao.repositories.AvionRepository;
 import ma.atelier.graphql_tp_devoir.dtos.AvionDtos;
 import ma.atelier.graphql_tp_devoir.mapper.AvionMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-@Builder
-@NoArgsConstructor
-@Getter
-@Setter
 
 public class AvionManager implements AvionService{
 
-    private AvionRepository avionRepository;
+   final private AvionRepository avionRepository;
     final private AvionMapper avionMapper = new AvionMapper();
     public AvionManager( AvionRepository avionRepository ) {
         this.avionRepository = avionRepository;
@@ -23,29 +20,19 @@ public class AvionManager implements AvionService{
 
     @Override
     public List<AvionDtos> listAvions() {
-        List<Avion> avions = avionRepository.findAll() ;
-        return avions.stream().map(avionMapper::fromAvion).toList();
-
-
+        return avionRepository.findAll()
+                .stream()
+                .map(avion -> {
+                    AvionDtos dto = new AvionDtos();
+                    dto.setId(avion.getId_Avion());
+                    dto.setMatricul(avion.getMatricul());
+                    dto.setColor(avion.getColor());
+                    dto.setModel(avion.getModel());
+                    return dto;
+                })
+                .toList();
     }
 
-    @Override
-    public AvionDtos getAvionByModel(String model) {
-        return null;
-    }
 
-    @Override
-    public AvionDtos getAvionByModelAndPrice(String model, double price) {
-        return null;
-    }
 
-    @Override
-    public AvionDtos saveAvion(AvionDtos avion) {
-        return null;
-    }
-
-    @Override
-    public AvionDtos deleteAvion(String matricule) {
-        return null;
-    }
 }
