@@ -4,8 +4,9 @@ import lombok.*;
 
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-@Getter @Setter
+@Data
 public class AvionDtos {
+    private Long id;
     private String model;
     private String color;
     private String matricul;
