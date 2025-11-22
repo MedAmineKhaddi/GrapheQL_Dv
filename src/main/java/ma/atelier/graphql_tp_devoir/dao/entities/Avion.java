@@ -7,8 +7,8 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
+@Data
 @NoArgsConstructor @AllArgsConstructor
-@Getter @Setter
 @Builder
 public class Avion {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
